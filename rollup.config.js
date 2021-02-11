@@ -22,12 +22,12 @@ for (const bundle of bundleNames) {
         output: [
             {
                 file: `dist/${bundle}.js`,
-                name: bundle,
+                name: 'Slick',
                 format: 'umd'
             },
             {
                 file: `dist/${bundle}.min.js`,
-                name: bundle,
+                name: 'Slick',
                 plugins: [terser()],
                 format: 'umd'
             }
