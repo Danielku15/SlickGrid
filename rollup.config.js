@@ -1,5 +1,6 @@
 const resolve = require('./rollup.resolve');
 const terser = require('rollup-plugin-terser').terser;
+const dts = require('rollup-plugin-dts').default;
 
 const bundleNames = [
     'slick.core',
