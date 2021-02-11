@@ -7,6 +7,16 @@
     "example": "examples",
     "test": "tests"
   },
+  "files": [
+    "/dist/slick.core.js",
+    "/dist/slick.dataview.js",
+    "/dist/slick.editors.js",
+    "/dist/slick.grid.css",
+    "/dist/slick.grid.js",
+    "/dist/slick.groupitemmetadataprovider.js",
+    "/dist/slick.remotemodel-yahoo.js",
+    "/dist/slick.remotemodel.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/6pac/SlickGrid.git"
@@ -25,17 +35,41 @@
   },
   "homepage": "https://github.com/6pac/SlickGrid#readme",
   "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc --project tsconfig.build.json && rollup -c rollup.config.js",
+    "build:ci": "npm run clean && npm run build && npm pack",
+    "test": "tsc --project tsconfig.json && concurrently --kill-others \"tsc --project tsconfig.json -w\" \"karma start karma.conf.js --browsers Chrome --no-single-run --reporters spec,kjhtml\"",
+    "test:ci": "tsc --project tsconfig.json && karma start karma.conf.js --browsers ChromeHeadless --single-run --reporters spec",
     "cypress": "npx cypress open",
     "cypress:ci": "npx cypress run --reporter xunit --reporter-options output=testresult.xml",
-    "serve": "http-server ./ -p 8080 -a localhost -s"
+    "serve": "http-server ./ -p 8080 -a localhost -s",
+    "start": "npm run build && concurrently --kill-others \"tsc --project tsconfig.build.json --watch\" \"rollup -c rollup.config.js -w\""
   },
   "dependencies": {
     "jquery": ">=1.8.0",
     "jquery-ui": ">=1.8.0"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@types/jasmine": "^3.6.3",
+    "@types/jquery": ">=1.8.0",
+    "concurrently": "^5.3.0",
     "cypress": "^6.2.1",
     "eslint": "^7.18.0",
-    "http-server": "^0.12.3"
+    "http-server": "^0.12.3",
+    "karma": "^6.1.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^4.0.1",
+    "karma-jasmine-html-reporter": "^1.5.4",
+    "karma-rollup-preprocessor": "^7.0.5",
+    "karma-spec-reporter": "0.0.32",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.38.5",
+    "rollup-plugin-dts": "^2.0.1",
+    "rollup-plugin-serve": "^1.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "terser": "^5.6.0-beta",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5"
   }
 }
