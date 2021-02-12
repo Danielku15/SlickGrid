@@ -59,7 +59,7 @@ export class Event {
      * @method unsubscribe
      * @param fn Event handler to be removed.
      */
-    public unsubscribe(fn: EventListener) {
+    public unsubscribe(fn?: EventListener) {
         for (var i = this._handlers.length - 1; i >= 0; i--) {
             if (this._handlers[i] === fn) {
                 this._handlers.splice(i, 1);
@@ -289,7 +289,7 @@ interface IEditController {
     cancelCurrentEdit(): boolean
 }
 
-interface IColumnIndexAccess {
+export interface IColumnIndexAccess {
     getColumnIndex(id: any): number
 }
 
