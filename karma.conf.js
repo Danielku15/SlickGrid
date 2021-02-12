@@ -1,4 +1,3 @@
-const resolve = require('./rollup.resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 
 module.exports = function (config) {
@@ -29,12 +28,6 @@ module.exports = function (config) {
 
         rollupPreprocessor: {
             plugins: [
-                resolve({
-                    mappings: {
-                        '@src': 'dist/lib.test/src',
-                        '@test': 'dist/lib.test/test'
-                    }
-                }),
                 commonjs()
             ],
             output: {

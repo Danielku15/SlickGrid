@@ -2,7 +2,7 @@
  * Polyfill for Map to support old browsers but
  * benefit of the Map speed in modern browsers.
  */
-export class Map {
+class Polyfill {
     private data = {};
 
     /***
@@ -39,3 +39,5 @@ export class Map {
         delete this.data[key];
     }
 }
+
+export const SlickMap:MapConstructor = 'Map' in window ? window.Map : Polyfill as any;

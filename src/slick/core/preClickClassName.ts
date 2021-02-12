@@ -1,0 +1,1 @@
+export let preClickClassName = 'slick-edit-preclick';

@@ -1,4 +1,3 @@
-const resolve = require('./rollup.resolve');
 const terser = require('rollup-plugin-terser').terser;
 const dts = require('rollup-plugin-dts').default;
 const serve = require('rollup-plugin-serve');
@@ -43,12 +42,6 @@ for (const bundle of bundleNames) {
             exclude: 'node_modules/**'
         },
         plugins: [
-            resolve({
-                mappings: {
-                    '@src': 'dist/lib'
-                }
-            }),
-
             copy({
                 targets: [
                     { src: 'src/*.css', dest: 'dist/' }
@@ -74,12 +67,6 @@ for (const bundle of bundleNames) {
             }
         ],
         plugins: [
-            resolve({
-                mappings: {
-                    '@src': 'dist/types'
-                },
-                types: true
-            }),
             dts()
         ]
     });
